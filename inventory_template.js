@@ -2,9 +2,7 @@ var fs = require('fs');
 
 /// สร้างตัวแปรเก็บ stock สินค้า
 var stock = new Map();
-var fs = require('fs');
 
-const {loadStock, saveStock, fill, sell, check, clear, remove} = require('./inventory_template');
 loadStock = () => {
     fs.readFile('stock.dat', function (err, filedata) {
         if(err) throw err;
@@ -14,7 +12,9 @@ loadStock = () => {
 
         stock_lines.forEach((line) => {
             let dat = line.split(' ');
+            if(dat[0]){
             stock.set(dat[0], parseInt(dat[1]));
+            }
         })
 
         // โหลดเสร็จแล้ว แสดงผ่าน console ว่า stock มีอะไรบ้าง
@@ -37,61 +37,63 @@ saveStock = () => {
 
 fill = (item, quantity) => {
     if(stock.has(item)){
-        stock.set(item,stock.get(item) + quantity);
-    }else{
-        stock.set(item , quantity);
+        stock.set(item, stock.get(item) + quantity)
+    } else {
+        stock.set(item, quantity)
     }
     saveStock();
-    console.table(stock);
-    return stock.get(item);
+    return stock.get(item)
 }
 
-sell = (item, quantity) => {
+sell = (item,quantity) => {
     if(stock.has(item)){
-        if(stock.get(item) >= quantity)
-        stock.set(item, stock.get(item)- quantity);
-    else
-        throw 'Error! Stock of' + item + 'is not enough!';
-    }else{
-        throw 'Error! there was no' + item + 'in our store!';
+        if(stock.get(item) >= quantity){
+            stock.set(item, parseInt(stock.get(item)) - parseInt(quantity))
+            
+        }else{
+            throw 'Error Stock of '+ item + 'is not enought'
+        } 
+    } else {
+        throw 'Error There was no'+ item + 'is our store'
     }
     saveStock();
-    console.table(stock);
-    return stock.get(item);
+    return stock.get(item)
 }
 
 check = (item) => {
-    if(stock.has(item)) {
-        console.log('We have' + stock.get(item) + ' ' + item+ '(s).');
-        return stock.get(item);
-        }else{
-            throw 'Our store has no' + item;
-            return undefined;
+    if(stock.has(item)){
+        return stock.get(item)    
+    }else{
+        throw 'Our store has no ' + item 
+        return undefined
     }
 }
 
 clear = (item) => {
-    let quantity = undefined;
+    let quantity = undefined
     if(stock.has(item)){
-        quantity = stock.get(item);
-        stock.set(item, 0); 
+        quantity = stock.get(item)
+        stock.set(item,0)
         saveStock();
-        console.table(stock);
-        console.log('Clear ' + item);
-        return quantity;
-    } else {
-        console.error('Our store has no' + item);
-        return undefined;
+        console.table(stock)
+        return quantity
+    }else{
+        throw 'Our store has no' + item 
+        return undefined
     }
 }
 
 remove = (item) => {
     if(stock.has(item)){
-        stock.delete(item);
+        stock.delete(item)
         saveStock();
-        console.table(stock);
-        console.log('Removed ' + item);
-        }
+        return stock.get(item)
+    }else{
+        throw 'Our store has no' + item 
+        return undefined
+    }
+    
+    
 }
 
 module.exports = {
@@ -103,5 +105,3 @@ module.exports = {
     clear: clear,
     remove: remove
 };
-
-console.log(stock)
