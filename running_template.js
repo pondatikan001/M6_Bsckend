@@ -1,7 +1,7 @@
 var http = require('http');
 var url = require('url');
 
-const { loadStock, saveStock, fill, sell, check, clear, remove } = require('./inven_template');
+const { loadStock, saveStock, fill, sell, check, clear, remove } = require('./inventory_template');
 
 loadStock();
 

@@ -131,5 +131,4 @@ if(stock.has(item)){
 }
 
 
-
 console.log(stock)
