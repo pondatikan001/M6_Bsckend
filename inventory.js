@@ -4,6 +4,10 @@ var stock = new Map();
 var fs = require('fs');
 //const { Http2ServerRequest } = require('http2');
 
+const {loadStock, saveStock, fill, sell, check, clear, remove} = require('./inventory');
+
+loadStock();
+
 fs.readFile('stock.dat', function (err, filedata) {
     if(err) throw err;
     let stock_data = filedata.toString();
@@ -28,7 +32,7 @@ http.createServer(function (req, res){
           break;
           case '/sell':
           sell(request_path.query.item, parseInt(request_path.query.quantity));
-          body -= 'sell';
+          body += 'sell';
           break;
           case '/check':
           check(request_path.query.item);
@@ -127,5 +131,15 @@ if(stock.has(item)){
     console.log('Removed ' + item);
     }
 }
+
+module.exports = {
+    loadStock: loadStock,
+    saveStock: saveStock,
+    fill: fill,
+    sell: sell,
+    check: check,
+    clear: clear,
+    remove: remove
+};
 
 console.log(stock)
