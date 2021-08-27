@@ -96,12 +96,22 @@ remove = (item) => {
     
 }
 
-module.exports = {
+search = (name) => {
+    let array = Array.from(stock, ([item, quantity]) => ({ item, quantity }));
+    let answer=  array.filter(p => (p.item.includes(name)))
+    console.table(answer)
+    return [answer.length,answer]
+
+   
+}
+
+odule.exports = {
     loadStock: loadStock,
     saveStock: saveStock,
     fill: fill,
     sell: sell,
     check: check,
     clear: clear,
-    remove: remove
+    remove: remove,
+    search:search
 };
