@@ -3,7 +3,7 @@ const https = require('http');
 const options = {
     hostname: 'localhost',
     port: 8082,
-    path: '/fill',
+    path: '/fill?item=orange&quantity=5',
     method: 'GET'
 };
 const req = https.request(options, res =>{
