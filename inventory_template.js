@@ -105,7 +105,7 @@ search = (name) => {
    
 }
 
-odule.exports = {
+module.exports = {
     loadStock: loadStock,
     saveStock: saveStock,
     fill: fill,
