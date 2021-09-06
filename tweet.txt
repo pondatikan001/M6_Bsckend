@@ -1,0 +1,4 @@
+1 1 0 Today is so cloudy.
+2 3 0 Cafe is open.. wow!
+3 4 0 My phone is broken, better get a new one.
+4 3 3 You need help?
