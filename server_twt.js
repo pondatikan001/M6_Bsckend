@@ -39,14 +39,13 @@ http.createServer(function (req, res) {
             break;
 
         case '/create_tweet':
-            let req_input =[];
             if(req.method == 'POST') {
-            req.on('data', (chunk) =>{
-                req_input.push(chunk);
-                    }).on('end', () =>{
-                        res.writeHead(200, {'Content-Type': 'application/json'});
-	                    res.end(JSON.stringify(response_object));
-                    })
+                let req_input =[];
+                req.on('data', (chunk) =>{
+                    req_input.push(chunk);
+                }).on('end', () =>{
+                        
+                })
                 try {
                 data = create_tweet(request_path.query.user_id, request_path.query.source_id, request_path.query.message);
                 } catch(err) {
