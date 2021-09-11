@@ -1,10 +1,6 @@
 function Shape(){
     this.X = 0;
     this.Y = 0;
-
-    this.product = () =>{
-        return this.X * this.Y;
-    }
 }
 
 
@@ -43,16 +39,7 @@ Circle.prototype.area = function(){
     return 3.14 * this.radius * this.radius;
 }
 
-
-var r = new Rectangle();
-
-r.width  = 2;
-r.height = 4;
-
-console.log(r.area());
-
-var c = new Circle();
-c.radius = 2;
-console.log(c.area());
-
-
+module.exports = {}
+exports.Shape = () =>{
+    return new Shape();
+}
