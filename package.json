@@ -1,0 +1,22 @@
+{
+    "name": "my-nodejs",
+    "version": "1.0.0",
+    "main": ".test_shape.js",
+    "private": true,
+
+    "scripts": {
+        "start": "node server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": ""
+
+
+
+
+
+}
+
+
+
+
