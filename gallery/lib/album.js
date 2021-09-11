@@ -46,3 +46,7 @@ Album.prototype.photos = function(callback) {
         loop_in(0);
     });
 }
+
+exports.createAlbum = (path) =>{
+    return new Album(path);
+}
